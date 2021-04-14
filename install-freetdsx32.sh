@@ -54,10 +54,11 @@ function install_unixODBC() {
 	cd unixODBC-2.3.9
 	echo "Begin configuring unixODBC-2.3.9..."
 	./configure CFLAGS=-m32 --prefix=${ODBC_DIR} --disable-gui --disable-drivers --enable-iconv 1> ${LOGS_DIR}/unix_odbc_config.log 2> ${LOGS_DIR}/unix_odbc_config.err
-	echo "Configuartion complete"
+	echo "Configuration complete"
 	echo "Building and installing unixODBC-2.3.9 under ${ODBC_DIR}..."
 	make 1> ${LOGS_DIR}/unix_odbc_make.log 2> ${LOGS_DIR}/unix_odbc_make.err
 	sudo make install 1> ${LOGS_DIR}/unix_odbc_install.log 2> ${LOGS_DIR}/unix_odbc_install.err
+	make clean 1> ${LOGS_DIR}/unix_odbc_clean.log 2> ${LOGS_DIR}/unix_odbc_clean.err
 	echo "unixODBC 2.3.9 successfully installed."
 	echo "See log output under ${LOGS_DIR} for details"
 	echo ""
@@ -69,12 +70,15 @@ function install_gperf() {
         tar -xzf ${RSRC_DIR}/gperf-3.1.tar.gz
         cd gperf-3.1
         echo "Begin configuring gperf-3.1..."
-        ./configure CFLAGS=-m32 --prefix=${GPERF_DIR} 1> ${LOGS_DIR}/gperf_config.log 2> ${LOGS_DIR}/gperf_config.err
-        echo "Configuartion complete"
+        ./configure --prefix=${GPERF_DIR} 1> ${LOGS_DIR}/gperf_config.log 2> ${LOGS_DIR}/gperf_config.err
+        echo "Configuration complete"
         echo "Building and installing gperf-3.1 under ${GPERF_DIR}..."
         make 1> ${LOGS_DIR}/gperf_make.log 2> ${LOGS_DIR}/gperf_make.err
         sudo make install 1> ${LOGS_DIR}/gperf_install.log 2> ${LOGS_DIR}/gperf_install.err
-        echo "gperf-3.1 successfully installed."
+        make clean 1> ${LOGS_DIR}/gperf_clean.log 2> ${LOGS_DIR}/gperf_clean.err
+	export GPERF=${GPERF_DIR}/bin
+	export PATH=${PATH}:${GPERF}
+	echo "gperf-3.1 successfully installed."
         echo "See log output under ${LOGS_DIR} for details"
 	echo ""
 }
@@ -82,15 +86,16 @@ function install_gperf() {
 function install_freetds() {
 	cd ${LIBS_DIR}
         echo "Extracting ${RSRC_DIR}/freetds.tar.gz under ${LIBS_DIR}..."
-        tar -xzf ${RSRC_DIR}/freetds.tar.gz
+        tar -xf ${RSRC_DIR}/freetds.tar.gz
         cd freetds
         echo "Begin configuring freetds-7.4..."
-        ./configure CFLAGS=-m32 --prefix=${FREETDS_DIR} --with-tdsver=7.4.1 --with-unixodbc=${ODBC_DIR} --disable-apps --enable-msdblib --enable-sybase-compat 1> ${LOGS_DIR}/gperf_config.log 2> ${LOGS_DIR}/gperf_config.err
-        echo "Configuartion complete"
+        ./autogen.sh CFLAGS=-m32 --prefix=${FREETDS_DIR} --with-tdsver=7.4 --with-unixodbc=${ODBC_DIR} --disable-apps --enable-msdblib --enable-sybase-compat 1> ${LOGS_DIR}/freetds_config.log 2> ${LOGS_DIR}/freetds_config.err
+        echo "Configuration complete"
         echo "Building and installing freetds-7.4 under ${FREETDS_DIR}..."
         make 1> ${LOGS_DIR}/freetds_make.log 2> ${LOGS_DIR}/freetds_make.err
         sudo make install 1> ${LOGS_DIR}/freetds_install.log 2> ${LOGS_DIR}/freetds_install.err
-        echo "freetds-7.4 successfully installed."
+        make clean 1> ${LOGS_DIR}/freetds_clean.log 2> ${LOGS_DIR}/freetds_clean.err
+	echo "freetds-7.4 successfully installed."
         echo "See log output under ${LOGS_DIR} for details"
 	echo ""
 }
