@@ -1,0 +1,26 @@
+cd lib; make install
+make[1]: Entering directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/lib'
+make[1]: Nothing to be done for 'install'.
+make[1]: Leaving directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/lib'
+cd src; make install
+make[1]: Entering directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/src'
+/bin/sh ./../build-aux/mkinstalldirs /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/bin
+mkdir -p -- /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/bin
+/usr/bin/install -c gperf /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/bin/gperf
+make[1]: Leaving directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/src'
+cd tests; make install
+make[1]: Entering directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/tests'
+make[1]: Nothing to be done for 'install'.
+make[1]: Leaving directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/tests'
+cd doc; make install
+make[1]: Entering directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/doc'
+/bin/sh ./../build-aux/mkinstalldirs /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/info
+mkdir -p -- /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/info
+/usr/bin/install -c -m 644 ./gperf.info /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/info/gperf.info
+/bin/sh ./../build-aux/mkinstalldirs /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/man/man1
+mkdir -p -- /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/man/man1
+/usr/bin/install -c -m 644 ./gperf.1 /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/man/man1/gperf.1
+/bin/sh ./../build-aux/mkinstalldirs /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/doc/
+mkdir -p -- /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/doc/
+/usr/bin/install -c -m 644 ./gperf.html /home/ec2-user/install-freetds/FREETDS/INSTALL/gperf-3.1x32/share/doc//gperf.html
+make[1]: Leaving directory '/home/ec2-user/install-freetds/FREETDS/LIBS/gperf-3.1/doc'
